@@ -1,6 +1,7 @@
 import cors from 'cors';
 import express from 'express';
 import mongoose from 'mongoose';
+import routes from './routes';
 
 export class App {
   public express: express.Application;
@@ -20,7 +21,7 @@ export class App {
 
   private database(): void {
     mongoose.connect(
-      'mongodb+srv://dummyuser:dummyuser@cluster1.qjai6.mongodb.net/?retryWrites=true&w=majority',
+      'mongodb+srv://dummyuser:dummyuser@cluster1.qjai6.mongodb.net/hellsnare-dashboard-db?retryWrites=true&w=majority',
       {
         useNewUrlParser: true,
       },
@@ -28,9 +29,7 @@ export class App {
   }
 
   private routes(): void {
-    this.express.get('/', (req, res) => {
-      return res.send('Hello World');
-    });
+    this.express.use(routes);
   }
 }
 
